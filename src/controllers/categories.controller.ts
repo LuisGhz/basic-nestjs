@@ -4,7 +4,7 @@ import { Param } from '@nestjs/common/decorators/http/route-params.decorator';
 
 @Controller('categories')
 export class CategoriesController {
-  @Get('/categories/:id/products/:productId')
+  @Get('/:id/products/:productId')
   getCategories(
     @Param('id') id: string,
     @Param('productId') productId: string,
