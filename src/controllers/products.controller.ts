@@ -24,20 +24,27 @@ export class ProductsController {
   //   return `limit: ${limit}, offset: ${offset}`;
   // }
   @Get('list')
-  getMany(@Query('limit') limit: number, @Query('offset') offset = 0) {
-    return `limit: ${limit}, offset: ${offset}`;
-  }
-  // @Get('/:id')
-  // @HttpCode(HttpStatus.ACCEPTED)
-  // getOne(@Param() params: any) {
-  //   return `Product: ${params.id}`;
-  // }
-  @Get('/:id')
-  getOne(@Res() response: Response, @Param('id') id: string) {
-    response.status(200).send({
-      message: `Product: ${id}`,
+  getMany(
+    @Res() response: Response,
+    @Query('limit') limit: number,
+    @Query('offset') offset = 0,
+  ) {
+    response.status(202).send({
+      limit,
+      offset,
     });
   }
+  @Get('/:id')
+  @HttpCode(HttpStatus.ACCEPTED)
+  getOne(@Param() params: any) {
+    return `Product: ${params.id}`;
+  }
+  // @Get('/:id')
+  // getOne(@Res() response: Response, @Param('id') id: string) {
+  //   response.status(200).send({
+  //     message: `Product: ${id}`,
+  //   });
+  // }
   @Post()
   create(@Body() payload: any) {
     return {
