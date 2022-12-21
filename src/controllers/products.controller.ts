@@ -1,5 +1,9 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
-import { Post } from '@nestjs/common/decorators/http/request-mapping.decorator';
+import {
+  Delete,
+  Post,
+  Put,
+} from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
 
 @Controller('products')
@@ -26,6 +30,20 @@ export class ProductsController {
     return {
       message: 'Message',
       payload,
+    };
+  }
+  @Put(':id')
+  update(@Param('id') id: number, @Body() payload: any) {
+    return {
+      id,
+      payload,
+    };
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: number) {
+    return {
+      id,
     };
   }
 }
