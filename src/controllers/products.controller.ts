@@ -1,4 +1,6 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Post } from '@nestjs/common/decorators/http/request-mapping.decorator';
+import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
 
 @Controller('products')
 export class ProductsController {
@@ -19,4 +21,11 @@ export class ProductsController {
   // getOne(@Param('id') id: string) {
   //   return `Product: ${id}`
   // }
+  @Post()
+  create(@Body() payload: any) {
+    return {
+      message: 'Message',
+      payload,
+    };
+  }
 }
