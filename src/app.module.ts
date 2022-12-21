@@ -12,7 +12,15 @@ import { BrandsController } from './controllers/brands.controller';
 
 @Module({
   imports: [],
-  controllers: [AppController, ProductsController, CategoriesController, OrdersController, UsersController, CustomersController, BrandsController],
+  controllers: [
+    AppController,
+    ProductsController,
+    CategoriesController,
+    OrdersController,
+    UsersController,
+    CustomersController,
+    BrandsController,
+  ],
   providers: [AppService],
 })
 export class AppModule {}
