@@ -6,7 +6,7 @@ import {
   HttpStatus,
   HttpCode,
   Res,
-  ParseIntPipe,
+  // ParseIntPipe,
 } from '@nestjs/common';
 import {
   Delete,
@@ -18,6 +18,7 @@ import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
 import { Response } from 'express';
 import { Product } from 'src/entities/product.entity';
 import { ProductsService } from 'src/services/products.service';
+import { ParseIntPipe } from 'src/common/parse-int/parse-int.pipe';
 
 @Controller('products')
 export class ProductsController {
