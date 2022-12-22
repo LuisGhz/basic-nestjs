@@ -6,6 +6,7 @@ import {
   HttpStatus,
   HttpCode,
   Res,
+  ParseIntPipe,
 } from '@nestjs/common';
 import {
   Delete,
@@ -27,7 +28,10 @@ export class ProductsController {
   //   return `limit: ${limit}, offset: ${offset}`;
   // }
   @Get('list')
-  getMany(@Query('limit') limit: number, @Query('offset') offset = 0) {
+  getMany(
+    @Query('limit', ParseIntPipe) limit: number,
+    @Query('offset', ParseIntPipe) offset = 0,
+  ) {
     // response.status(202).send({
     //   limit,
     //   offset,
@@ -36,7 +40,7 @@ export class ProductsController {
   }
   @Get('/:id')
   @HttpCode(HttpStatus.ACCEPTED)
-  getOne(@Param('id') id: number) {
+  getOne(@Param('id', ParseIntPipe) id: number) {
     // return `Product: ${id}`;
     return this._productsService.findOne(id);
   }
@@ -57,12 +61,12 @@ export class ProductsController {
     };
   }
   @Put(':id')
-  update(@Param('id') id: number, @Body() payload: Product) {
+  update(@Param('id', ParseIntPipe) id: number, @Body() payload: Product) {
     return this._productsService.update(id, payload);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number) {
+  delete(@Param('id', ParseIntPipe) id: number) {
     this._productsService.delete(id);
     return true;
   }
