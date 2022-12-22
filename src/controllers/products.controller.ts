@@ -19,6 +19,7 @@ import { Response } from 'express';
 import { Product } from 'src/entities/product.entity';
 import { ProductsService } from 'src/services/products.service';
 import { ParseIntPipe } from 'src/common/parse-int/parse-int.pipe';
+import { CreateProductDto, UpdateProductDto } from 'src/dtos/products.dtos';
 
 @Controller('products')
 export class ProductsController {
@@ -52,7 +53,7 @@ export class ProductsController {
   //   });
   // }
   @Post()
-  create(@Body() payload: Product) {
+  create(@Body() payload: CreateProductDto) {
     const newProduct = this._productsService.create(payload);
     return {
       message: 'Created',
@@ -62,7 +63,10 @@ export class ProductsController {
     };
   }
   @Put(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() payload: Product) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() payload: UpdateProductDto,
+  ) {
     return this._productsService.update(id, payload);
   }
 
