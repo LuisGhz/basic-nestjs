@@ -7,6 +7,7 @@ import {
   HttpCode,
   Res,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import {
   Delete,
   Post,
@@ -23,6 +24,7 @@ import {
   UpdateProductDto,
 } from 'src/products/dtos/products.dto';
 
+@ApiTags('Products')
 @Controller('products')
 export class ProductsController {
   constructor(private _productsService: ProductsService) {}
