@@ -7,7 +7,7 @@ import {
   HttpCode,
   Res,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiQuery } from '@nestjs/swagger';
 import {
   Delete,
   Post,
@@ -34,6 +34,11 @@ export class ProductsController {
   //   return `limit: ${limit}, offset: ${offset}`;
   // }
   @Get('list')
+  @ApiQuery({
+    name: 'offset',
+    required: false,
+    type: 'number',
+  })
   getMany(
     @Query('limit', ParseIntPipe) limit: number,
     @Query('offset', ParseIntPipe) offset = 0,
